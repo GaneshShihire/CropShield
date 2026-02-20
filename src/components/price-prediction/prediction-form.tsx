@@ -28,9 +28,9 @@ import {
   FormMessage,
 } from '../ui/form';
 import {
-  PredictCropPricesInputSchema,
   type PredictCropPricesOutput,
 } from '@/ai/flows/predict-crop-prices';
+import { PredictCropPricesInputSchema } from '@/lib/schemas';
 
 const formSchema = PredictCropPricesInputSchema;
 type FormValues = z.infer<typeof formSchema>;

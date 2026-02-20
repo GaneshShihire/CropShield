@@ -2,10 +2,10 @@
 
 import {
   predictCropPrices,
-  PredictCropPricesInputSchema,
   type PredictCropPricesInput,
   type PredictCropPricesOutput,
 } from '@/ai/flows/predict-crop-prices';
+import { PredictCropPricesInputSchema } from '@/lib/schemas';
 
 type State = {
   result?: PredictCropPricesOutput;
