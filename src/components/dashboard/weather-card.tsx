@@ -11,7 +11,7 @@ const forecast = [
 
 export function WeatherCard() {
   return (
-    <Card className="lg:col-span-2">
+    <Card className="lg:col-span-2 bg-gradient-to-br from-primary/20 to-primary/5">
       <CardHeader>
         <CardTitle className="font-headline">Weather Forecast - Pune, India</CardTitle>
       </CardHeader>

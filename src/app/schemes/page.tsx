@@ -33,7 +33,7 @@ const schemes = [
 export default function SchemesPage() {
   return (
     <div className="flex flex-col gap-8">
-       <div>
+       <div className="animate-slide-in-from-bottom">
         <h1 className="text-3xl font-bold tracking-tight font-headline">
           Government Schemes
         </h1>
@@ -43,19 +43,25 @@ export default function SchemesPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {schemes.map((scheme) => (
-          <Card key={scheme.title} className="flex flex-col">
-            <CardHeader>
-                <div className="p-3 rounded-full bg-primary/10 text-primary w-fit mb-2">
-                    <Landmark className="size-6" />
-                </div>
-              <CardTitle className="font-headline">{scheme.title}</CardTitle>
-              <CardDescription>{scheme.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <p className="text-sm text-muted-foreground">{scheme.details}</p>
-            </CardContent>
-          </Card>
+        {schemes.map((scheme, index) => (
+          <div
+            key={scheme.title}
+            className="animate-slide-in-from-bottom"
+            style={{ animationDelay: `${index * 0.1 + 0.2}s`, animationFillMode: 'backwards' }}
+          >
+            <Card className="flex flex-col h-full">
+              <CardHeader>
+                  <div className="p-3 rounded-full bg-primary/10 text-primary w-fit mb-2">
+                      <Landmark className="size-6" />
+                  </div>
+                <CardTitle className="font-headline">{scheme.title}</CardTitle>
+                <CardDescription>{scheme.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-sm text-muted-foreground">{scheme.details}</p>
+              </CardContent>
+            </Card>
+          </div>
         ))}
       </div>
     </div>

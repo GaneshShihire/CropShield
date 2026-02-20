@@ -2,7 +2,7 @@ import { PredictionForm } from '@/components/price-prediction/prediction-form';
 
 export default function PricePredictionPage() {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 animate-slide-in-from-bottom">
       <h1 className="text-3xl font-bold tracking-tight font-headline">
         Crop Price Prediction
       </h1>

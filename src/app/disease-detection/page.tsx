@@ -2,7 +2,7 @@ import { DetectionForm } from '@/components/disease-detection/detection-form';
 
 export default function DiseaseDetectionPage() {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 animate-slide-in-from-bottom">
       <h1 className="text-3xl font-bold tracking-tight font-headline">
         Leaf Disease Detection
       </h1>
