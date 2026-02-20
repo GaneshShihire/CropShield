@@ -1,6 +1,7 @@
 'use client';
 
-import { useForm, zodResolver } from '@hookform/resolvers/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useFormState, useFormStatus } from 'react-dom';
 import { useToast } from '@/hooks/use-toast';
