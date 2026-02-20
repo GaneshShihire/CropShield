@@ -186,7 +186,12 @@ export function PredictionForm() {
                 name="historicalPriceData"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Historical Data & Trends</FormLabel>
+                    <FormLabel>
+                      Historical Data & Trends{' '}
+                      <span className="text-xs text-muted-foreground">
+                        (Optional)
+                      </span>
+                    </FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="e.g., Last year prices, market demand..."
@@ -203,7 +208,12 @@ export function PredictionForm() {
                 name="weatherForecast"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Weather Forecast</FormLabel>
+                    <FormLabel>
+                      Weather Forecast{' '}
+                      <span className="text-xs text-muted-foreground">
+                        (Optional)
+                      </span>
+                    </FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="e.g., Expected rainfall, temperature..."

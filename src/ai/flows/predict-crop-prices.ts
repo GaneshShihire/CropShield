@@ -75,11 +75,15 @@ const predictCropPricesPrompt = ai.definePrompt({
 
 Predict the future market price for {{{crop}}} in the {{{region}}} region.
 
-Consider the following data:
+Consider the following data if provided:
+{{#if historicalPriceData}}
 Historical Price Data and Trends: {{{historicalPriceData}}}
+{{/if}}
+{{#if weatherForecast}}
 Weather Forecast: {{{weatherForecast}}}
+{{/if}}
 
-Analyze these factors thoroughly and provide a predicted price, a list of the key factors that influenced your prediction (including any government schemes if relevant), and recommendations for farmers to maximize their profits. Make sure to use the \`getGovernmentSchemes\` tool if you believe government schemes are relevant to this prediction.`,
+Analyze all available factors thoroughly and provide a predicted price, a list of the key factors that influenced your prediction (including any government schemes if relevant), and recommendations for farmers to maximize their profits. Make sure to use the \`getGovernmentSchemes\` tool if you believe government schemes are relevant to this prediction. If historical data or weather forecast are not provided, base your prediction on general knowledge for the crop and region.`,
 });
 
 const predictCropPricesFlow = ai.defineFlow(
