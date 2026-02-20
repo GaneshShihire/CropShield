@@ -57,7 +57,7 @@ export function AppSidebar() {
             <Leaf className="h-5 w-5" />
           </div>
           <span className="truncate text-lg font-semibold font-headline group-data-[collapsible=icon]:hidden">
-            AgriVision
+            CropShield
           </span>
         </div>
       </SidebarHeader>

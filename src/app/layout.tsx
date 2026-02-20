@@ -7,7 +7,7 @@ import { AppSidebar } from '@/components/shared/app-sidebar';
 import { SiteHeader } from '@/components/shared/site-header';
 
 export const metadata: Metadata = {
-  title: 'AgriVision',
+  title: 'CropShield',
   description:
     'AI-powered system for crop price prediction and leaf disease detection.',
 };
