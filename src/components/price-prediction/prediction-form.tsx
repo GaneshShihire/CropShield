@@ -16,7 +16,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
 import {
@@ -31,9 +30,25 @@ import {
   type PredictCropPricesOutput,
 } from '@/ai/flows/predict-crop-prices';
 import { PredictCropPricesInputSchema } from '@/lib/schemas';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
 
 const formSchema = PredictCropPricesInputSchema;
 type FormValues = z.infer<typeof formSchema>;
+
+const crops = ['Wheat', 'Rice', 'Corn', 'Soybean', 'Cotton'];
+const regions = [
+  'Punjab',
+  'Tamil Nadu',
+  'Iowa',
+  'Maharashtra',
+  'California',
+];
 
 const initialState: {
   result?: PredictCropPricesOutput;
@@ -117,9 +132,23 @@ export function PredictionForm() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Crop</FormLabel>
-                      <FormControl>
-                        <Input placeholder="e.g., Wheat" {...field} />
-                      </FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a crop" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {crops.map((crop) => (
+                            <SelectItem key={crop} value={crop}>
+                              {crop}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -130,9 +159,23 @@ export function PredictionForm() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Region</FormLabel>
-                      <FormControl>
-                        <Input placeholder="e.g., Punjab" {...field} />
-                      </FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a region" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {regions.map((region) => (
+                            <SelectItem key={region} value={region}>
+                              {region}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
