@@ -25,21 +25,18 @@ export default function DashboardPage() {
           icon={<DollarSign className="size-8" />}
           title="Crop Price Prediction"
           description="Forecast future market prices for your crops."
-          className="bg-green-100/50 dark:bg-green-900/10"
         />
         <FeatureCard
           href="/disease-detection"
           icon={<Bot className="size-8" />}
           title="Leaf Disease Detection"
           description="Identify plant diseases and get treatment advice."
-          className="bg-blue-100/50 dark:bg-blue-900/10"
         />
          <FeatureCard
           href="/schemes"
           icon={<Landmark className="size-8" />}
           title="Government Schemes"
           description="Explore schemes and initiatives for farmers."
-          className="bg-orange-100/50 dark:bg-orange-900/10"
         />
       </div>
     </div>

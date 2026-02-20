@@ -2,18 +2,10 @@
 
 import {
   predictCropPrices,
+  PredictCropPricesInputSchema,
+  type PredictCropPricesInput,
   type PredictCropPricesOutput,
 } from '@/ai/flows/predict-crop-prices';
-import { z } from 'zod';
-
-const predictPricesSchema = z.object({
-  crop: z.string().min(1, 'Crop name is required.'),
-  region: z.string().min(1, 'Region is required.'),
-  historicalPriceData: z
-    .string()
-    .min(1, 'Historical price data is required.'),
-  weatherForecast: z.string().min(1, 'Weather forecast is required.'),
-});
 
 type State = {
   result?: PredictCropPricesOutput;
@@ -22,15 +14,9 @@ type State = {
 };
 
 export async function predictPricesAction(
-  prevState: State,
-  formData: FormData
+  data: PredictCropPricesInput
 ): Promise<State> {
-  const validatedFields = predictPricesSchema.safeParse({
-    crop: formData.get('crop'),
-    region: formData.get('region'),
-    historicalPriceData: formData.get('historicalPriceData'),
-    weatherForecast: formData.get('weatherForecast'),
-  });
+  const validatedFields = PredictCropPricesInputSchema.safeParse(data);
 
   if (!validatedFields.success) {
     const errors = validatedFields.error.flatten().fieldErrors;

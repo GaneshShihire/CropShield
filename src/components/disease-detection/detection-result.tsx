@@ -84,8 +84,8 @@ export function DetectionResult({
           </div>
         ) : (
           <div className="text-center py-8">
-            <CheckCircle2 className="size-16 mx-auto text-green-600" />
-            <h3 className="text-2xl font-semibold mt-4 text-green-700">
+            <CheckCircle2 className="size-16 mx-auto text-primary" />
+            <h3 className="text-2xl font-semibold mt-4 text-primary">
               No Disease Detected
             </h3>
             <p className="mt-2 text-muted-foreground">

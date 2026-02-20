@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useState, useTransition } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { predictPricesAction } from '@/lib/actions/predict-prices';
 import { PredictionResult } from './prediction-result';
@@ -17,7 +17,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
 import {
@@ -28,27 +27,26 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
+import {
+  PredictCropPricesInputSchema,
+  type PredictCropPricesOutput,
+} from '@/ai/flows/predict-crop-prices';
 
-const formSchema = z.object({
-  crop: z.string().min(2, { message: 'Crop name is required.' }),
-  region: z.string().min(2, { message: 'Region is required.' }),
-  historicalPriceData: z
-    .string()
-    .min(10, { message: 'Please provide some historical data.' }),
-  weatherForecast: z
-    .string()
-    .min(10, { message: 'Please provide a weather forecast.' }),
-});
+const formSchema = PredictCropPricesInputSchema;
+type FormValues = z.infer<typeof formSchema>;
 
-const initialState = {
+const initialState: {
+  result?: PredictCropPricesOutput;
+  error?: string;
+  success: boolean;
+} = {
   success: false,
 };
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+function SubmitButton({ isPending }: { isPending: boolean }) {
   return (
-    <Button type="submit" disabled={pending} className="w-full">
-      {pending ? (
+    <Button type="submit" disabled={isPending} className="w-full">
+      {isPending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           Predicting Price...
@@ -61,10 +59,11 @@ function SubmitButton() {
 }
 
 export function PredictionForm() {
-  const [state, formAction] = useFormState(predictPricesAction, initialState);
+  const [state, setState] = useState(initialState);
+  const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       crop: '',
@@ -74,13 +73,18 @@ export function PredictionForm() {
     },
   });
 
-  if (state.error) {
-    toast({
-      variant: 'destructive',
-      title: 'Prediction Failed',
-      description: state.error,
+  async function onSubmit(data: FormValues) {
+    startTransition(async () => {
+      const resultState = await predictPricesAction(data);
+      if (resultState.error) {
+        toast({
+          variant: 'destructive',
+          title: 'Prediction Failed',
+          description: resultState.error,
+        });
+      }
+      setState(resultState);
     });
-    state.error = undefined; // Clear error after showing toast
   }
 
   const handleTalathiHelper = () => {
@@ -98,7 +102,7 @@ export function PredictionForm() {
     <div className="grid gap-8 md:grid-cols-2">
       <Card>
         <Form {...form}>
-          <form action={formAction}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardHeader>
               <CardTitle>Prediction Inputs</CardTitle>
               <CardDescription>
@@ -170,14 +174,14 @@ export function PredictionForm() {
               />
             </CardContent>
             <CardFooter className="flex-col items-stretch gap-4">
-                <SubmitButton />
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={handleTalathiHelper}
-                >
-                  Use Talathi Data Helper
-                </Button>
+              <SubmitButton isPending={isPending} />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleTalathiHelper}
+              >
+                Use Talathi Data Helper
+              </Button>
             </CardFooter>
           </form>
         </Form>
