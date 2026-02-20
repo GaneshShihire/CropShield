@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { Sidebar, SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/shared/app-sidebar';
 import { SiteHeader } from '@/components/shared/site-header';
+import { SiteFooter } from '@/components/shared/site-footer';
 
 export const metadata: Metadata = {
   title: 'CropShield',
@@ -42,6 +43,7 @@ export default function RootLayout({
             <SidebarInset className="flex min-h-svh flex-1 flex-col bg-transparent">
               <SiteHeader />
               <main className="flex-1 p-4 sm:p-6 lg:p-8 animate-fade-in">{children}</main>
+              <SiteFooter />
             </SidebarInset>
         </SidebarProvider>
         <Toaster />
