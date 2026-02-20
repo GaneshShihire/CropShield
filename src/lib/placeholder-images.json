@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "healthy-leaf",
+      "description": "A healthy green leaf.",
+      "imageUrl": "https://images.unsplash.com/photo-1758467033635-26c25c81d784?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxoZWFsdGh5JTIwbGVhZnxlbnwwfHx8fDE3NzE1NjY4MTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy leaf"
+    },
+    {
+      "id": "diseased-leaf-1",
+      "description": "A leaf with brown spots, indicating a possible disease.",
+      "imageUrl": "https://images.unsplash.com/photo-1659490147465-1d333021dd81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkaXNlYXNlZCUyMGxlYWZ8ZW58MHx8fHwxNzcxNTIwNDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "diseased leaf"
+    },
+    {
+      "id": "diseased-leaf-2",
+      "description": "A leaf with yellowing and blight.",
+      "imageUrl": "https://images.unsplash.com/photo-1683573478776-614f36e53c6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGxhbnQlMjBibGlnaHR8ZW58MHx8fHwxNzcxNTY2ODEzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "plant blight"
+    }
+  ]
 }
