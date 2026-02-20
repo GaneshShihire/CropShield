@@ -20,7 +20,7 @@ export function DetectionResult({
   result,
   uploadedImage,
 }: DetectionResultProps) {
-  if (!result) {
+  if (!result || !uploadedImage) {
     return (
       <Card className="flex flex-col items-center justify-center p-6 text-center">
         <CardHeader>
